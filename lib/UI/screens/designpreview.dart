@@ -8,7 +8,7 @@ class FullScreenImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown, // Neutral background
+      backgroundColor: Colors.brown, 
       appBar: AppBar(
         backgroundColor: Colors.brown,
         elevation: 0,
@@ -21,9 +21,9 @@ class FullScreenImage extends StatelessWidget {
       ),
       body: Center(
         child: InteractiveViewer(
-          panEnabled: true, // Enable panning
-          minScale: 0.8, // Minimum zoom scale
-          maxScale: 4.0, // Maximum zoom scale
+          panEnabled: true,      // Enable panning
+          minScale: 0.8,        // Minimum zoom scale
+          maxScale: 4.0,        // Maximum zoom scale
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
@@ -37,9 +37,9 @@ class FullScreenImage extends StatelessWidget {
               ],
             ),
             clipBehavior:
-                Clip.hardEdge, // Ensures content respects border radius
+                Clip.hardEdge,    
             child: FittedBox(
-              fit: BoxFit.contain, // Maintain natural aspect ratio of the image
+              fit: BoxFit.contain, 
               child: Image.network(
                 imageUrl,
                 loadingBuilder: (context, child, loadingProgress) {

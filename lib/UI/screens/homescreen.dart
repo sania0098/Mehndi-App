@@ -160,10 +160,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ClipOval(
                                 child: Image.asset(
                                   images[categories.indexOf(
-                                      category)], // Map category to corresponding image
+                                      category)], 
                                   fit: BoxFit.cover,
                                   width:
-                                      150, // Ensure the image dimensions match the container
+                                      150, 
                                   height: 150,
                                 ),
                               ),

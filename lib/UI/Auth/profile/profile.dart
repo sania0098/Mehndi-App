@@ -43,7 +43,7 @@ class _ProfileState extends State<Profile> {
       setState(() {
         _isLoading = false;
       });
-      // Handle error (e.g., user document does not exist)
+      // Handle error may show flutter toas
     }
   }
 
@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
         _profileImageUrl = downloadUrl;
       });
     } catch (e) {
-      // Handle error (e.g., show a Snackbar or Dialog)
+      // Handle error may show flutter toas
     }
   }
 
@@ -127,7 +127,7 @@ class _ProfileState extends State<Profile> {
               } else if (value == 'Delete Account') {
                 FirebaseAuth.instance.currentUser!.delete().then((v) {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const Signup()));
+                      MaterialPageRoute(builder: (context) => Signup()));
                 });
               }
             },
@@ -150,7 +150,6 @@ class _ProfileState extends State<Profile> {
         padding: const EdgeInsets.all(15),
         child: Column(children: [
           const SizedBox(height: 20),
-          // Profile Picture with Edit Icon
           Center(
             child: Stack(
               children: [
@@ -198,15 +197,6 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           const SizedBox(height: 20),
-          // Display User Name and Email
-          // Text(
-          //   currentUser.displayName ?? 'No Name Provided',
-          //   style: const TextStyle(
-          //     fontSize: 18,
-          //     fontWeight: FontWeight.bold,
-          //     color: Colors.black,
-          //   ),
-          // ),
           const SizedBox(height: 5),
           Text(
             currentUser.email ?? 'No Email Provided',

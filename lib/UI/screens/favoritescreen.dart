@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:m_design/UI/screens/designpreview.dart';
 import 'package:m_design/utils/flutter_toast.dart';
-import 'package:shimmer/shimmer.dart'; // Import shimmer package
+import 'package:shimmer/shimmer.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -18,7 +18,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   bool isLoading = true;
   bool isSelectionMode = false;
 
-  final fluttertoas toast = fluttertoas(); // Instance of fluttertoas
+  final fluttertoas toast = fluttertoas();
   String? currentUserId;
 
   @override
@@ -85,7 +85,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       }
       selectedImages.clear();
       isSelectionMode = false;
-      toast.showpopup(Colors.green, 'Selected favorites deleted!');
+      toast.showpopup(Colors.brown, 'Selected favorites deleted!');
     } catch (e) {
       print("Error deleting favorites: $e");
       toast.showpopup(Colors.red, 'Failed to delete selected favorites!');
@@ -148,16 +148,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 crossAxisSpacing: 16.0,
                 mainAxisSpacing: 16.0,
               ),
-              itemCount: 6, // Adjust the number of shimmer placeholders
+              itemCount: 6,
               itemBuilder: (context, index) {
                 return Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
                   highlightColor: Colors.grey.shade100,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white, 
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
-                       
                     ),
                   ),
                 );

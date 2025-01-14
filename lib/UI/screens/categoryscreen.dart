@@ -258,3 +258,194 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 }
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:m_design/UI/screens/designpreview.dart';
+// import 'package:m_design/utils/flutter_toast.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+
+// class CategoryScreen extends StatefulWidget {
+//   final String categoryName;
+
+//   const CategoryScreen({super.key, required this.categoryName});
+
+//   @override
+//   State<CategoryScreen> createState() => _CategoryScreenState();
+// }
+
+// class _CategoryScreenState extends State<CategoryScreen> {
+//   String selectedSubcategory = "Simple";
+//   final fluttertoas toast = fluttertoas();
+
+//   String? get currentUserId => FirebaseAuth.instance.currentUser?.uid;
+
+//   void showFullScreenImage(String imageUrl) {
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => FullScreenImage(imageUrl: imageUrl),
+//       ),
+//     );
+//   }
+
+//   void toggleFavorite(String imageUrl) async {
+//     if (currentUserId == null) {
+//       toast.showpopup(Colors.red, "You must be logged in to use favorites.");
+//       return;
+//     }
+
+//     try {
+//       final snapshot = await FirebaseFirestore.instance
+//           .collection('favorites')
+//           .where('imageUrl', isEqualTo: imageUrl)
+//           .where('userId', isEqualTo: currentUserId)
+//           .get();
+
+//       if (snapshot.docs.isNotEmpty) {
+//         // Remove from favorites
+//         for (var doc in snapshot.docs) {
+//           await FirebaseFirestore.instance
+//               .collection('favorites')
+//               .doc(doc.id)
+//               .delete();
+//         }
+//         toast.showpopup(Colors.brown, "Removed from favorites!");
+//       } else {
+//         // Add to favorites
+//         await FirebaseFirestore.instance.collection('favorites').add({
+//           'imageUrl': imageUrl,
+//           'category': widget.categoryName,
+//           'subcategory': selectedSubcategory,
+//           'userId': currentUserId,
+//         });
+//         toast.showpopup(Colors.brown, "Added to favorites!");
+//       }
+//     } catch (e) {
+//       toast.showpopup(Colors.red, "Failed to update favorites.");
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           '${widget.categoryName} Designs',
+//           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//         ),
+//         backgroundColor: Colors.brown,
+//       ),
+//       body: Column(
+//         children: [
+//           SizedBox(height: 20),
+//           SizedBox(
+//             height: 60,
+//             child: ListView(
+//               scrollDirection: Axis.horizontal,
+//               children: ["Simple", "Bridal", "Hand", "Feet"].map((subcategory) {
+//                 final isSelected = subcategory == selectedSubcategory;
+//                 return Padding(
+//                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//                   child: ElevatedButton(
+//                     onPressed: () {
+//                       setState(() {
+//                         selectedSubcategory = subcategory;
+//                       });
+//                     },
+//                     style: ElevatedButton.styleFrom(
+//                       backgroundColor:
+//                           isSelected ? Colors.brown : Colors.brown.shade100,
+//                       foregroundColor: isSelected ? Colors.white : Colors.black,
+//                     ),
+//                     child: Text(subcategory),
+//                   ),
+//                 );
+//               }).toList(),
+//             ),
+//           ),
+//           Expanded(
+//             child: StreamBuilder<QuerySnapshot>(
+//               stream: FirebaseFirestore.instance
+//                   .collection('mehndi_images')
+//                   .where('category', isEqualTo: widget.categoryName)
+//                   .where('subcategory', isEqualTo: selectedSubcategory)
+//                   .where('status',
+//                       isEqualTo: 'Approved') // Only show approved images
+//                   .snapshots(),
+//               builder: (context, snapshot) {
+//                 if (snapshot.connectionState == ConnectionState.waiting) {
+//                   return Center(child: CircularProgressIndicator());
+//                 }
+
+//                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+//                   return Center(
+//                     child: Text('No images to display for this subcategory.'),
+//                   );
+//                 }
+
+//                 final images = snapshot.data!.docs;
+
+//                 return GridView.builder(
+//                   padding: EdgeInsets.all(16.0),
+//                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                     crossAxisCount: 2,
+//                     crossAxisSpacing: 16.0,
+//                     mainAxisSpacing: 16.0,
+//                   ),
+//                   itemCount: images.length,
+//                   itemBuilder: (context, index) {
+//                     var imageData = images[index];
+//                     String imageUrl = imageData['imageUrl'];
+
+//                     return GestureDetector(
+//                       onTap: () => showFullScreenImage(imageUrl),
+//                       child: ClipRRect(
+//                         borderRadius: BorderRadius.circular(15),
+//                         child: Stack(
+//                           children: [
+//                             Image.network(
+//                               imageUrl,
+//                               fit: BoxFit.cover,
+//                               height: double.infinity,
+//                               width: double.infinity,
+//                             ),
+//                             Positioned(
+//                               bottom: 8,
+//                               right: 8,
+//                               child: GestureDetector(
+//                                 onTap: () {
+//                                   toggleFavorite(imageUrl);
+//                                 },
+//                                 child: Container(
+//                                   decoration: BoxDecoration(
+//                                     color: Colors.brown.withOpacity(0.8),
+//                                     shape: BoxShape.circle,
+//                                   ),
+//                                   padding: EdgeInsets.all(8),
+//                                   child: Icon(
+//                                     Icons.favorite_border,
+//                                     color: Colors.white,
+//                                   ),
+//                                 ),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 );
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
