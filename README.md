@@ -1,16 +1,12 @@
-# m_design
+# Mehandi Design 
 
-A new Flutter project.
+The Mehndi Design App is a comprehensive platform where users can explore, upload, and share stunning mehndi designs. With a secure login system, users can create accounts to access personalized features, browse through various categories and subcategories, and contribute their own designs. The app caters to all styles, from traditional to modern, making it a one-stop destination for mehndi enthusiasts.
 
-## Getting Started
+## see from here
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+- [app for mehndi designs](https://github.com/sania0098/Mehndi-App/tree/master/lib/UI)
+
