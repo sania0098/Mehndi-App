@@ -4,9 +4,5 @@ The Mehndi Design App is a comprehensive platform where users can explore, uploa
 
 ## see from here
 
-
-
-
-
 - [app for mehndi designs](https://github.com/sania0098/Mehndi-App/tree/master/lib/UI)
 
